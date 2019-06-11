@@ -3,3 +3,22 @@
     margin:0 auto;
 
 }
+
+
+.bg-secondary{
+    background-color: #8c8c8c;
+}
+
+.bg-secondary *{
+   color:white!important;
+}
+
+#dashboard-main{
+    background-color: #f2f2f2;
+    min-height: 50rem;
+}
+
+#dashboard-side{
+    background-color: #f2f2f2;
+    min-height: 50rem;
+}
