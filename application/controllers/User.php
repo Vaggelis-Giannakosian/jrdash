@@ -30,6 +30,47 @@ class User extends CI_Controller
         return false;
     }
 
+    public function register()
+    {
+        $this->output->set_content_type('application_json');
+//validation rules
+        $this->form_validation->set_rules('login','Login','required|min_length[4]|max_length[16]|is_unique[user.login]');
+        $this->form_validation->set_rules('email','Email','required|valid_email|is_unique[user.email]');
+        $this->form_validation->set_rules('password','Password','required|min_length[4]|max_length[16]|matches[confirm_password]');
+        $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
+//custom error messages
+        $this->form_validation->set_message('required','This field is required');
+        $this->form_validation->set_message('valid_email','The email must have the correct format');
+
+        if($this->form_validation->run() == false){
+            echo validation_errors();
+            return false;
+        }else{
+            $login = $this->input->post('login');
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $user = [
+                'login' => $login,
+                'email' => $email,
+                'password'=> hash('sha256',$password.SALT)
+            ];
+            $id = $this->user_model->insertUser($user);
+        }
+
+        if(isset($id)){
+            $data = ['user_id'=>$id ];
+            $this->session->set_userdata($data);
+            $output=['result'=>1];
+        }else{
+            $output=['result'=>0];
+        }
+        $this->output->set_output(json_encode($output));
+        return false;
+
+    }
+
+
+
     public function get()
     {
         $users = $this->user_model->get();

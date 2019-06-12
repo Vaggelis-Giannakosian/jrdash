@@ -26,10 +26,13 @@
     <div class="control-group">
         <div class="controls">
             <input class="btn btn-primary" type="submit" value="Login" name="password">
+            <a class="btn btn-primary" href="<?php echo site_url('home/register') ?>">Register</a>
         </div>
     </div>
 
 </form>
+
+
 
 </div>
 </div>
