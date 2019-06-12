@@ -18,7 +18,14 @@ class user_model extends CI_Model
         }else{
             $query = $this->db->get_where('user', array('user_id' => $userId));
         }
-        return $query->result();
+        return $query->result_array();
+    }
+
+    public function authenticateUser($name,$password)
+    {
+        $query = $this->db->get_where('user',array('login' => $name,'password'=>$password));
+        return $query->result_array();
+
     }
 
 

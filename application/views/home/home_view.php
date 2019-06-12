@@ -7,7 +7,7 @@
 
 
 
-<form action="" class="form-horizontal" method="post">
+<form action="<?php echo site_url('user/login'); ?>" id="login_form" class="form-horizontal" method="post">
 
     <div class="control-group">
         <label for="" class="control-label">Login</label>
@@ -33,3 +33,23 @@
 
 </div>
 </div>
+
+
+<script type="text/javascript">
+    $(document).ready(()=>{
+        $('#login_form').on('submit',function(e){
+            e.preventDefault();
+          let url =  $(this).attr('action');
+          let data = $(this).serialize();
+          $.post(url,data,function(e){
+              if(parseInt(e.result)===1)
+              {
+               window.location.href='<?php echo site_url('/dashboard'); ?>';
+              }else{
+                
+              }
+
+          },'json');
+        });
+    });
+</script>
