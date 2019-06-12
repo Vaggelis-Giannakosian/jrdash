@@ -4,6 +4,10 @@
 <div class="row">
 
     <div class="span6">
+<!--        dynamic-->
+        <div id="register_form_error" class="alert alert-error">
+
+        </div>
 
         <form action="<?php echo site_url('user/register'); ?>" id="register_form" class="form-horizontal" method="post">
 
@@ -52,6 +56,9 @@
 
 <script type="text/javascript">
     $(document).ready(()=>{
+
+        $('#register_form_error').hide();
+
         $('#register_form').on('submit',function(e){
             e.preventDefault();
             let url =  $(this).attr('action');
@@ -61,7 +68,13 @@
                 {
                     window.location.href='<?php echo site_url('/dashboard'); ?>';
                 }else{
-
+                    $('#register_form_error').show();
+                    let output='<ul>';
+                        for(let error in e.error){
+                            output += `<li>${error}: ${e.error[error]}</li>`;
+                        }
+                     output+='</ul>';
+                    $('#register_form_error').html(output);
                 }
 
             },'json');

@@ -43,7 +43,7 @@ class User extends CI_Controller
         $this->form_validation->set_message('valid_email','The email must have the correct format');
 
         if($this->form_validation->run() == false){
-            $this->output->set_output(json_encode(['result'=>0,'data'=>$this->form_validation->error_array()]));
+            $this->output->set_output(json_encode(['result'=>0,'error'=>$this->form_validation->error_array()]));
             return false;
         }else{
             $login = $this->input->post('login');
@@ -60,9 +60,9 @@ class User extends CI_Controller
         if(isset($id)){
             $data = ['user_id'=>$id ];
             $this->session->set_userdata($data);
-            $output=['result'=>1,'userid'=>$id];
+            $output=['result'=>1];
         }else{
-            $output=['result'=>0];
+            $output=['result'=>0,'error'=>'User not created'];
         }
         $this->output->set_output(json_encode($output));
         return false;
