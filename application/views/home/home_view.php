@@ -7,7 +7,7 @@
 
 
 
-<form action="<?php echo site_url('user/login'); ?>" id="login_form" class="form-horizontal" method="post">
+<form action="<?php echo site_url('api/login'); ?>" id="login_form" class="form-horizontal" method="post">
 
     <div class="control-group">
         <label for="" class="control-label">Login</label>

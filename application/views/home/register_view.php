@@ -9,7 +9,7 @@
 
         </div>
 
-        <form action="<?php echo site_url('user/register'); ?>" id="register_form" class="form-horizontal" method="post">
+        <form action="<?php echo site_url('api/register'); ?>" id="register_form" class="form-horizontal" method="post">
 
             <div class="control-group">
                 <label for="" class="control-label">Login</label>
