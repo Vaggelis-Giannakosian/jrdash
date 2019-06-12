@@ -15,7 +15,8 @@ class User extends CI_Controller
     {
         $login = $this->input->post('login');
         $password = $this->input->post('password');
-        $user = $this->user_model->authenticateUser($login,$password);
+        $encodedPass =  hash('sha256',$password.SALT);
+        $user = $this->user_model->authenticateUser($login,$encodedPass);
         $this->output->set_content_type('application_json');
         $output = [];
         if($user){
