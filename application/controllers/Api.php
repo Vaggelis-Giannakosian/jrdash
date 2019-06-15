@@ -102,6 +102,7 @@ class Api extends CI_Controller
     public function update_todo()
     {
         $this->_require_login();
+        $todo_id = $this->input->post('todo_id');
 
     }
 
@@ -112,7 +113,7 @@ class Api extends CI_Controller
     public function delete_todo()
     {
         $this->_require_login();
-
+        $todo_id = $this->input->post('todo_id');
     }
 
 
@@ -132,7 +133,7 @@ class Api extends CI_Controller
     public function update_note()
     {
         $this->_require_login();
-
+        $todo_id = $this->input->post('note_id');
     }
 
 
@@ -142,7 +143,7 @@ class Api extends CI_Controller
     public function delete_note()
     {
         $this->_require_login();
-
+        $todo_id = $this->input->post('note_id');
     }
 
 
